@@ -22,10 +22,20 @@ export default {
 		generateZAxisData(rows) {
 			let zData=[ ];
 
-		    for(let i=0;i<24;i++) {
-		    	zData.push(this.unpack(rows, i));
-		    }
+		    // for(let i=0;i<24;i++) {
+		    // 	zData.push(this.unpack(rows, i));
+		    // }
 
+		    const xDomain = [-5, 5];
+		    const yDomain = [-5, 5];
+		    const step = 1;
+
+		    for (let x = xDomain[0]; x <= xDomain[1]; x = x + step) {
+		     	for (let y = yDomain[0]; y <= yDomain[1]; y = y + step) {
+		     		console.log(x,y)
+		     	}
+		     } 
+debugger
 		    return zData;
 		}
 	},
@@ -34,12 +44,12 @@ export default {
 		const dataFileUrl = 'https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv';
 
 		Plotly.d3.csv(dataFileUrl, (err, rows) => {
-		      debugger
 		    let data = [{
 				z: this.generateZAxisData(rows),
 				type: 'surface'
 			}];
 		      
+		    console.table(data[0].z)
 		    let layout = {
 				title: 'paraboloid',
 				autosize: false,
